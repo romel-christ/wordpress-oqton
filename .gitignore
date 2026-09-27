@@ -1,0 +1,31 @@
+# WordPress core (reinstall with: .\wp.cmd core download --skip-content)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+!/wp-config-sample.php
+
+# Local config & secrets
+/wp-config.php
+.env.local
+
+# WordPress runtime
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/debug.log
+/wp-content/plugins/
+/wp-content/themes/*
+!/wp-content/themes/oqton-tech/
+
+# Tooling
+/node_modules/
+/tools/wp-cli.phar
+/test-results/
+/playwright-report/
+/screenshots/
+/backups/
+.claude/settings.local.json

@@ -1,0 +1,329 @@
+/* Oqton Tech — supplementary styles for block styles and pattern details. */
+
+html { scroll-behavior: smooth; }
+
+/* Stacked full-width sections sit flush against each other (no blockGap seams). */
+main > .alignfull,
+main > .wp-block-template-part,
+.wp-block-post-content > .alignfull,
+body .wp-site-blocks > * { margin-block-start: 0; }
+
+/* ---------- Top bar & header ---------- */
+.oq-topbar { font-size: 0.875rem; }
+.oq-topbar a { color: inherit; }
+.oq-topbar p { margin: 0; }
+
+.oq-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	box-shadow: 0 6px 24px rgba(11, 21, 50, 0.06);
+}
+.admin-bar .oq-header { top: 32px; }
+@media (max-width: 782px) {
+	.admin-bar .oq-header { top: 0; position: relative; }
+}
+
+.oq-logo-mark {
+	display: inline-grid;
+	place-items: center;
+	width: 42px;
+	height: 42px;
+	border-radius: 10px;
+	background: linear-gradient(135deg, #2d5bff 0%, #00c2ff 100%);
+	color: #fff;
+	font-family: Barlow, sans-serif;
+	font-weight: 700;
+	font-size: 1.35rem;
+}
+
+.oq-header .wp-block-navigation a:hover { color: var(--wp--preset--color--primary); }
+.oq-header .wp-block-navigation__responsive-container.is-menu-open {
+	padding: 2rem;
+}
+
+/* ---------- Eyebrow / sub-title ---------- */
+.is-style-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.9rem;
+	color: var(--wp--preset--color--primary);
+	margin-bottom: 0.25rem !important;
+}
+.is-style-eyebrow::before {
+	content: "";
+	width: 28px;
+	height: 2px;
+	background: currentColor;
+}
+.has-text-align-center.is-style-eyebrow { justify-content: center; }
+.has-text-align-center.is-style-eyebrow::after {
+	content: "";
+	width: 28px;
+	height: 2px;
+	background: currentColor;
+}
+
+/* ---------- Cards ---------- */
+.is-style-card,
+.is-style-card-hover {
+	background: #fff;
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: 10px;
+	box-shadow: 0 10px 30px rgba(11, 21, 50, 0.05);
+	position: relative;
+	overflow: hidden;
+}
+.is-style-card-hover {
+	transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+.is-style-card-hover::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	width: 0;
+	background: linear-gradient(90deg, #2d5bff, #00c2ff);
+	transition: width 0.4s ease;
+}
+.is-style-card-hover:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 22px 45px rgba(45, 91, 255, 0.16);
+}
+.is-style-card-hover:hover::after { width: 100%; }
+
+/* Icon badge used in service & feature cards */
+.oq-icon {
+	display: inline-grid;
+	place-items: center;
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--light);
+	margin: 0 !important;
+	transition: background-color 0.35s ease;
+}
+.oq-icon img { width: 38px !important; height: 38px !important; }
+.is-style-card-hover:hover .oq-icon { background: #dfe7ff; }
+
+/* ---------- Hero ---------- */
+.oq-hero { position: relative; overflow: hidden; }
+.oq-hero .wp-block-cover__inner-container { position: relative; z-index: 2; }
+.oq-hero::before,
+.oq-hero::after {
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	z-index: 1;
+	pointer-events: none;
+}
+.oq-hero::before {
+	width: 520px;
+	height: 520px;
+	right: -140px;
+	top: -160px;
+	border: 60px solid rgba(45, 91, 255, 0.18);
+	animation: oq-spin 30s linear infinite;
+}
+.oq-hero::after {
+	width: 180px;
+	height: 180px;
+	left: 6%;
+	bottom: -70px;
+	background: rgba(0, 194, 255, 0.12);
+	animation: oq-float 7s ease-in-out infinite;
+}
+@keyframes oq-spin { to { transform: rotate(360deg); } }
+@keyframes oq-float { 50% { transform: translateY(-24px); } }
+
+.is-style-outline-light .wp-block-button__link {
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.7);
+	color: #fff;
+}
+.is-style-outline-light .wp-block-button__link:hover {
+	background: #fff;
+	color: var(--wp--preset--color--navy);
+}
+
+/* ---------- About / experience badge ---------- */
+.oq-media-stack { position: relative; }
+.oq-media-stack img { border-radius: 12px; }
+.oq-exp-badge {
+	position: absolute;
+	right: -12px;
+	bottom: 28px;
+	border-radius: 10px;
+	box-shadow: 0 20px 40px rgba(45, 91, 255, 0.3);
+	animation: oq-float 6s ease-in-out infinite;
+	max-width: 190px;
+}
+@media (max-width: 781px) {
+	.oq-exp-badge { position: static; margin-top: 1rem !important; max-width: none; }
+}
+
+/* ---------- Checklist ---------- */
+.is-style-checklist { list-style: none; padding-left: 0; }
+.is-style-checklist li {
+	position: relative;
+	padding-left: 2rem;
+	margin-bottom: 0.6rem;
+	color: var(--wp--preset--color--title);
+	font-weight: 500;
+}
+.is-style-checklist li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.35em;
+	width: 1.15rem;
+	height: 1.15rem;
+	border-radius: 50%;
+	background: var(--wp--preset--color--primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 70% no-repeat;
+}
+
+/* ---------- Counters ---------- */
+.oq-counter-num {
+	font-family: var(--wp--preset--font-family--heading);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Projects ---------- */
+.oq-project { position: relative; overflow: hidden; border-radius: 10px; }
+.oq-project img { transition: transform 0.6s ease; display: block; }
+.oq-project:hover img { transform: scale(1.08); }
+.oq-project .oq-project-info {
+	position: absolute;
+	left: 16px;
+	right: 16px;
+	bottom: 16px;
+	border-radius: 8px;
+	transform: translateY(16px);
+	opacity: 0.94;
+	transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.oq-project:hover .oq-project-info { transform: translateY(0); opacity: 1; }
+.oq-project-info p { margin: 0; }
+
+/* ---------- Process steps ---------- */
+.oq-step-num {
+	display: inline-grid;
+	place-items: center;
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 2px dashed var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary) !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+/* ---------- Team ---------- */
+.oq-team img { border-radius: 10px 10px 0 0; display: block; transition: filter 0.35s ease; }
+.oq-team:hover img { filter: saturate(1.2); }
+.oq-team .wp-block-social-links { justify-content: center; }
+
+/* ---------- Testimonials ---------- */
+.oq-quote {
+	position: relative;
+}
+.oq-quote::before {
+	content: "\201C";
+	position: absolute;
+	right: 24px;
+	top: -8px;
+	font-family: Georgia, serif;
+	font-size: 7rem;
+	line-height: 1;
+	color: rgba(45, 91, 255, 0.12);
+}
+.oq-stars { color: #ffb400; letter-spacing: 2px; margin: 0 !important; }
+.oq-avatar img { border-radius: 50%; }
+
+/* ---------- Pricing ---------- */
+.oq-price-featured {
+	background: var(--wp--preset--color--navy) !important;
+	color: #cfd5e6;
+	border-color: transparent !important;
+}
+.oq-price-featured h3,
+.oq-price-featured h4,
+.oq-price-featured .oq-price { color: #fff !important; }
+.oq-price-featured .is-style-checklist li { color: #fff; }
+.oq-price small { font-size: 1rem; font-weight: 500; color: var(--wp--preset--color--body); }
+.oq-price-featured .oq-price small { color: #cfd5e6; }
+
+/* ---------- FAQ (details block) ---------- */
+.oq-faq .wp-block-details {
+	border: 1px solid var(--wp--preset--color--border);
+	border-radius: 8px;
+	padding: 1rem 1.25rem;
+	background: #fff;
+}
+.oq-faq .wp-block-details summary {
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 600;
+	font-size: 1.125rem;
+	color: var(--wp--preset--color--title);
+	cursor: pointer;
+}
+.oq-faq .wp-block-details[open] { border-color: var(--wp--preset--color--primary); }
+
+/* ---------- Blog cards ---------- */
+.oq-blog .wp-block-post { height: 100%; }
+.oq-blog .wp-block-post-featured-image img { border-radius: 10px 10px 0 0; }
+.oq-blog .wp-block-post-date { color: var(--wp--preset--color--primary); }
+
+/* ---------- Brands ---------- */
+.oq-brands img { opacity: 0.55; filter: grayscale(1); transition: opacity 0.3s ease, filter 0.3s ease; }
+.oq-brands img:hover { opacity: 1; filter: none; }
+
+/* ---------- CTA ---------- */
+.oq-cta { position: relative; overflow: hidden; }
+.oq-cta::after {
+	content: "";
+	position: absolute;
+	right: -60px;
+	top: -60px;
+	width: 240px;
+	height: 240px;
+	border-radius: 50%;
+	border: 40px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- Footer ---------- */
+.oq-footer a { color: #b8c0d9; }
+.oq-footer a:hover { color: #fff; }
+.oq-footer .wp-block-heading { color: #fff; }
+.oq-footer .oq-footer-links { list-style: none; padding-left: 0; }
+.oq-footer .oq-footer-links li { margin-bottom: 0.5rem; }
+.oq-footer .oq-footer-links li::before { content: "\203A"; margin-right: 0.5rem; color: var(--wp--preset--color--accent); }
+
+/* ---------- Page banner (inner pages) ---------- */
+.oq-page-banner {
+	background-image: linear-gradient(90deg, rgba(11, 21, 50, 0.92), rgba(11, 21, 50, 0.6)), url("../images/page-banner.jpg");
+	background-size: cover;
+	background-position: center;
+}
+.oq-page-banner .wp-block-post-title,
+.oq-page-banner .wp-block-query-title { color: #fff; }
+.oq-page-banner a { color: #fff; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 781px) {
+	.oq-topbar { display: none; }
+	.oq-header-cta { display: none !important; }
+	/* Overlapping feature cards only make sense beside the desktop hero. */
+	.oq-features { margin-top: var(--wp--preset--spacing--60) !important; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation: none !important; transition: none !important; }
+}

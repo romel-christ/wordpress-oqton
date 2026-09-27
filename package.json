@@ -1,0 +1,16 @@
+{
+  "name": "wordpress-oqton",
+  "private": true,
+  "description": "Local WordPress site for Oqton with the oqton-tech block theme",
+  "scripts": {
+    "start": "php tools/wp-cli.phar server --host=localhost --port=8080",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "screenshots": "playwright test tests/screenshots.spec.ts",
+    "images": "php tools/generate-images.php && php tools/generate-svgs.php",
+    "seed": "php tools/wp-cli.phar eval-file tools/seed-content.php"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php tools/wp-cli.phar:*)",
+      "Bash(php -l:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(npm run:*)",
+      "PowerShell(.\\wp.cmd:*)",
+      "PowerShell(php -l:*)",
+      "PowerShell(npx playwright test:*)",
+      "PowerShell(npm run:*)"
+    ]
+  },
+  "enabledMcpjsonServers": ["playwright"]
+}
