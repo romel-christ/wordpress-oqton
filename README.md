@@ -65,6 +65,31 @@ Run these commands from the repository root in PowerShell.
    ```
    The site is at http://localhost:8080 and the admin area is at http://localhost:8080/wp-admin. The login is in `.env.local`.
 
+## Password protection (Oqton Shield)
+
+[`wp-content/mu-plugins/oqton-shield.php`](wp-content/mu-plugins/oqton-shield.php) puts HTTP basic auth (the browser's own username/password prompt) in front of the whole site, much like Drupal's Shield module. It's a must-use plugin, so it always loads and can't be switched off in wp-admin.
+
+Protection is **off** until you add both constants to `wp-config.php`:
+
+```php
+define( 'OQTON_SHIELD_USER', 'oqton' );
+define( 'OQTON_SHIELD_PASS', 'choose-a-password' );
+```
+
+Or set them with WP-CLI: `.\wp.cmd config set OQTON_SHIELD_PASS <password> --type=constant`.
+
+Optional settings:
+
+| Constant | Effect |
+|---|---|
+| `OQTON_SHIELD_ALLOW_IPS` | Comma-separated IPs that skip the prompt, e.g. an office or uptime monitor |
+| `OQTON_SHIELD_ALLOW_PATHS` | Comma-separated path prefixes that skip the prompt, e.g. a webhook URL |
+| `OQTON_SHIELD_REALM` | Label shown in the browser prompt (default `Oqton`) |
+
+WP-CLI and WordPress cron always skip the prompt. To turn protection off, delete the constants.
+
+For the Playwright tests, add the same credentials to `.env.local` as `SHIELD_USER=` and `SHIELD_PASS=`; the config sends them automatically.
+
 ## Everyday commands
 
 | Task | Command |
@@ -106,6 +131,8 @@ Each page is a list of references to theme patterns, so editing a file in `patte
 - If you edit a template or part in the Site Editor, WordPress stores your version in the database, and it takes priority over the file. Delete the saved version to go back to the file.
 
 ## Troubleshooting
+
+- **The browser keeps asking for a username and password:** that's Oqton Shield. The credentials are the `OQTON_SHIELD_*` values in `wp-config.php`.
 
 - **"Error establishing a database connection":** start MySQL in the XAMPP Control Panel. Check the database settings in `wp-config.php`.
 - **PHP errors:** they go to `wp-content/debug.log`, not to the page.

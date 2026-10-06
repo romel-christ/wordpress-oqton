@@ -10,6 +10,7 @@ description: Run, administer and develop the local Oqton WordPress site and its 
 - PHP 8.3 on PATH; database is XAMPP MariaDB 10.4 on 127.0.0.1:3307 (user `root`, no password), DB `wp_oqton`. The MySQL 8.0 service `MYSQL80` on 3306 is NOT used.
 - WP-CLI is **not** global. Use `.\wp.cmd <args>` (PowerShell) or `php tools/wp-cli.phar <args>` (Bash).
 - Site URL: http://localhost:8080 — admin at http://localhost:8080/wp-admin (credentials in `.env.local`, never commit or echo them into docs).
+- **Oqton Shield** (`wp-content/mu-plugins/oqton-shield.php`) puts HTTP basic auth on every request when `OQTON_SHIELD_USER`/`OQTON_SHIELD_PASS` are defined in `wp-config.php`. Credentials are also in `.env.local` as `SHIELD_USER`/`SHIELD_PASS`. Use `curl -u user:pass` for manual requests. WP-CLI and cron bypass it. It strips the auth headers after checking them so the REST API doesn't mistake them for an Application Password login — keep that behaviour if you edit the plugin.
 
 ## Start / stop
 - Start (background): `php tools/wp-cli.phar server --host=localhost --port=8080` (also `npm start`). It uses PHP's built-in server with WP-CLI's router, so pretty permalinks work.

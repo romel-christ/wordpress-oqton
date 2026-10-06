@@ -46,6 +46,19 @@ test('navigation works (desktop menu or mobile overlay)', async ({ page, isMobil
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Contact');
 });
 
+test('top bar address shows full address on hover', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Top bar is hidden on mobile');
+  await page.goto('/');
+  const addr = page.locator('.oq-topbar .oq-addr');
+  const pop = addr.locator('.oq-addr-pop');
+  await expect(pop).toBeHidden();
+  await addr.hover();
+  await expect(pop).toBeVisible();
+  await expect(pop).toContainText('Sri Sai Fancy Building');
+  await expect(pop).toHaveCSS('opacity', '1');
+  await page.screenshot({ path: 'screenshots/desktop/address-popup.png', clip: { x: 0, y: 0, width: 900, height: 260 } });
+});
+
 test('404 page', async ({ page }) => {
   const response = await page.goto('/this-page-does-not-exist/');
   expect(response?.status()).toBe(404);

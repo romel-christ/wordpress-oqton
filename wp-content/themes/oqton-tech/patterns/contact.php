@@ -7,9 +7,9 @@
  */
 
 $oqton_contacts = array(
-	array( 'icon-location', 'Our Office', '120 Innovation Drive<br>Austin, TX 78701' ),
+	array( 'icon-location', 'Our Office', 'No:77, 2nd Floor, Sri Sai Fancy Building,<br>Asambu Road, Vadaserry,<br>Nagercoil, Tamil Nadu 629001' ),
 	array( 'icon-phone', 'Call Us', '<a href="tel:+15550100200">+1 (555) 010-0200</a><br>Mon – Fri, 9:00 – 18:00' ),
-	array( 'icon-mail', 'Email Us', '<a href="mailto:hello@oqton.local">hello@oqton.local</a><br><a href="mailto:support@oqton.local">support@oqton.local</a>' ),
+	array( 'icon-mail', 'Email Us', '<a href="mailto:oqtonsolutions@gmail.com">oqtonsolutions@gmail.com</a>' ),
 );
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained","contentSize":"1240px"}} -->

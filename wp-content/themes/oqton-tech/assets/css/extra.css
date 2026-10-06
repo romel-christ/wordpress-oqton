@@ -9,7 +9,49 @@ main > .wp-block-template-part,
 body .wp-site-blocks > * { margin-block-start: 0; }
 
 /* ---------- Top bar & header ---------- */
-.oq-topbar { font-size: 0.875rem; }
+.oq-topbar { font-size: 0.875rem; position: relative; z-index: 60; }
+
+/* Short address in the top bar; full address pops up on hover / keyboard focus. */
+.oq-addr {
+	position: relative;
+	cursor: help;
+	border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
+	outline: none;
+}
+.oq-addr-pop {
+	position: absolute;
+	top: calc(100% + 12px);
+	left: 0;
+	width: max-content;
+	max-width: 280px;
+	padding: 0.9rem 1.1rem;
+	border-radius: 8px;
+	background: #fff;
+	color: var(--wp--preset--color--body);
+	line-height: 1.6;
+	box-shadow: 0 16px 40px rgba(11, 21, 50, 0.22);
+	border-top: 3px solid var(--wp--preset--color--primary);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(6px);
+	transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.oq-addr-pop strong { color: var(--wp--preset--color--title); font-family: var(--wp--preset--font-family--heading); }
+.oq-addr-pop::before {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 18px;
+	border: 7px solid transparent;
+	border-bottom-color: var(--wp--preset--color--primary);
+}
+.oq-addr:hover .oq-addr-pop,
+.oq-addr:focus .oq-addr-pop,
+.oq-addr:focus-within .oq-addr-pop {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
 .oq-topbar a { color: inherit; }
 .oq-topbar p { margin: 0; }
 
